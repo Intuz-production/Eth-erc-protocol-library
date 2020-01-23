@@ -1,0 +1,614 @@
+{
+    "swagger": "2.0",
+    "info": {
+        "version": "1.0.0",
+        "title": "Ethereum node API",
+        "description": "Ethereum node API",
+        "license": {
+            "name": "MIT",
+            "url": "https://opensource.org/licenses/MIT"
+        }
+    },
+    "host": "192.168.10.125:5000",
+    "basePath": "/api/",
+    "tags": [
+        {
+            "name": "User",
+            "description": "API for users in the system"
+        },
+        {
+            "name": "Wallet",
+            "description": "API for wallet in the system"
+        }
+    ],
+    "schemes": [
+        "http"
+    ],
+    "consumes": [
+        "application/json"
+    ],
+    "produces": [
+        "application/json"
+    ],
+    "paths": {
+        "/users/register": {
+            "post": {
+                "tags": [
+                    "User"
+                ],
+                "description": "Register in system",
+                "parameters": [
+                    {
+                        "name": "Register",
+                        "in": "body",
+                        "description": "User that want to register",
+                        "schema": {
+                            "$ref": "#/definitions/Register"
+                        }
+                    }
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "User Registered Successfully",
+                        "schema": {
+                            "$ref": "#/definitions/Response"
+                        }
+                    }
+                }
+            }
+        },
+        "/users/login": {
+            "post": {
+                "tags": [
+                    "User"
+                ],
+                "description": "Login in system",
+                "parameters": [
+                    {
+                        "name": "Login",
+                        "in": "body",
+                        "description": "User that want to login",
+                        "schema": {
+                            "$ref": "#/definitions/Login"
+                        }
+                    }
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "User Logged In",
+                        "schema": {
+                            "$ref": "#/definitions/Response"
+                        }
+                    }
+                }
+            }
+        },
+        "/wallet/createNewWallet": {
+            "post": {
+                "tags": [
+                    "Wallet"
+                ],
+                "description": "Create new wallet address for user",
+                "parameters": [
+                    {
+                        "name": "Authorization",
+                        "in": "header",
+                        "type": "string",
+                        "description": "Create new wallet address for user",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/TokenRequired"
+                        }
+                    }
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Create new wallet address for user",
+                        "schema": {
+                            "$ref": "#/definitions/Response"
+                        }
+                    }
+                }
+            }
+        },
+        "/wallet/importFromSeedPhraseConfirm": {
+            "post": {
+                "tags": [
+                    "Wallet"
+                ],
+                "description": "Confirm public address already available or not",
+                "parameters": [
+                    {
+                        "name": "Authorization",
+                        "in": "header",
+                        "type": "string",
+                        "description": "Confirm public address already available or not",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/TokenRequired"
+                        }
+                    },
+                    {
+                        "name": "Mnemonic_seed",
+                        "in": "body",
+                        "description": "Confirm public address already available or not",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/Mnemonic_seedConfirm"
+                        }
+                    }
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Import wallet using seed phrase",
+                        "schema": {
+                            "$ref": "#/definitions/Response"
+                        }
+                    }
+                }
+            }
+        },
+        "/wallet/importFromSeedPhrase": {
+            "post": {
+                "tags": [
+                    "Wallet"
+                ],
+                "description": "Import wallet using mnemonic seed phrase",
+                "parameters": [
+                    {
+                        "name": "Authorization",
+                        "in": "header",
+                        "type": "string",
+                        "description": "Import wallet using mnemonic seed phrase",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/TokenRequired"
+                        }
+                    },
+                    {
+                        "name": "Mnemonic_seed",
+                        "in": "body",
+                        "description": "Import wallet using mnemonic seed phrase",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/Mnemonic_seed"
+                        }
+                    }
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Import wallet using seed phrase",
+                        "schema": {
+                            "$ref": "#/definitions/Response"
+                        }
+                    }
+                }
+            }
+        },
+        "/wallet/importFromPrivateKeyConfirm": {
+            "post": {
+                "tags": [
+                    "Wallet"
+                ],
+                "description": "Confirm public address already available or not",
+                "parameters": [
+                    {
+                        "name": "Authorization",
+                        "in": "header",
+                        "type": "string",
+                        "description": "Confirm public address already available or not",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/TokenRequired"
+                        }
+                    },
+                    {
+                        "name": "Private Key",
+                        "in": "body",
+                        "description": "Import wallet using private key",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/ImportPrivateKeyConfirm"
+                        }
+                    }
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Confirm public address already available or not",
+                        "schema": {
+                            "$ref": "#/definitions/Response"
+                        }
+                    }
+                }
+            }
+        },
+        "/wallet/importFromPrivateKey": {
+            "post": {
+                "tags": [
+                    "Wallet"
+                ],
+                "description": "Import wallet using private key",
+                "parameters": [
+                    {
+                        "name": "Authorization",
+                        "in": "header",
+                        "type": "string",
+                        "description": "Import wallet using private key",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/ImportPrivateKey"
+                        }
+                    },
+                    {
+                        "name": "Private Key",
+                        "in": "body",
+                        "description": "Import wallet using private key",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/ImportPrivateKey"
+                        }
+                    }
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Import wallet private key",
+                        "schema": {
+                            "$ref": "#/definitions/Response"
+                        }
+                    }
+                }
+            }
+        },
+        "/wallet/transferBalanceFromWallet": {
+            "post": {
+                "tags": [
+                    "Wallet"
+                ],
+                "description": "Transafer balance from one account to another",
+                "parameters": [
+                    {
+                        "name": "Authorization",
+                        "in": "header",
+                        "type": "string",
+                        "description": "Transafer balance from one account to another",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/TokenRequired"
+                        }
+                    },
+                    {
+                        "name": "Parameter",
+                        "in": "body",
+                        "description": "Transafer balance from one account to another",
+                        "schema": {
+                            "$ref": "#/definitions/TransferBalance"
+                        }
+                    }
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Transafer balance from one account to another",
+                        "schema": {
+                            "$ref": "#/definitions/Response"
+                        }
+                    }
+                }
+            }
+        },
+        "/wallet/sendERC20Token": {
+            "post": {
+                "tags": [
+                    "Wallet"
+                ],
+                "description": "Transafer ERC20 token from one account to another",
+                "parameters": [
+                    {
+                        "name": "Authorization",
+                        "in": "header",
+                        "type": "string",
+                        "description": "Transafer ERC20 token from one account to another",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/TokenRequired"
+                        }
+                    },
+                    {
+                        "name": "Parameter",
+                        "in": "body",
+                        "description": "Transafer ERC20 token from one account to another",
+                        "schema": {
+                            "$ref": "#/definitions/TransferERC20"
+                        }
+                    }
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Transafer ERC20 token from one account to another",
+                        "schema": {
+                            "$ref": "#/definitions/Response"
+                        }
+                    }
+                }
+            }
+        },
+        "/wallet/sendERC721Token": {
+            "post": {
+                "tags": [
+                    "Wallet"
+                ],
+                "description": "Transafer ERC721 token from one account to another",
+                "parameters": [
+                    {
+                        "name": "Authorization",
+                        "in": "header",
+                        "type": "string",
+                        "description": "Transafer ERC721 token from one account to another",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/TokenRequired"
+                        }
+                    },
+                    {
+                        "name": "Parameter",
+                        "in": "body",
+                        "description": "Transafer ERC721 token from one account to another",
+                        "schema": {
+                            "$ref": "#/definitions/TransferERC721"
+                        }
+                    }
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Transafer ERC721 token from one account to another",
+                        "schema": {
+                            "$ref": "#/definitions/Response"
+                        }
+                    }
+                }
+            }
+        }
+    },
+    "definitions": {
+        "Register": {
+            "required": [
+                "email",
+                "password"
+            ],
+            "properties": {
+                "email": {
+                    "type": "string",
+                    "uniqueItems": true,
+                    "example": "test@test.com"
+                },
+                "password": {
+                    "type": "string",
+                    "uniqueItems": true,
+                    "example": "Pass@123"
+                }
+            }
+        },
+        "Login": {
+            "required": [
+                "email",
+                "password"
+            ],
+            "properties": {
+                "email": {
+                    "type": "string",
+                    "uniqueItems": true,
+                    "example": "test@test.com"
+                },
+                "password": {
+                    "type": "string",
+                    "uniqueItems": true,
+                    "example": "Pass@123"
+                }
+            }
+        },
+        "TokenRequired": {
+            "required": [
+                "Authorization"
+            ],
+            "properties": {
+                "Authorization": {
+                    "type": "string",
+                    "uniqueItems": true,
+                    "example": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI1ZDRjMTJmMTZhNGFkODQxMmM3Y2Y4N2EiLCJ1c2VyX25hbWUiOiJFdGhlci1FeHBlcnQiLCJpYXQiOjE1NjUyNjY4MTJ9.tWtB2iZ7namAessBNdR4G-efOoDCnsAUHQYhD-mRH1E"
+                }
+            }
+        },
+        "Mnemonic_seed": {
+            "required": [
+                "mnemonic_word"
+            ],
+            "properties": {
+                "mnemonic_word": {
+                    "type": "string",
+                    "uniqueItems": true,
+                    "example": "poet level bita tall measure marriage flush flame landa wet damage feature"
+                }
+            }
+        },
+        "ImportPrivateKey": {
+            "required": [
+                "private_key"
+            ],
+            "properties": {
+                "private_key": {
+                    "type": "string",
+                    "uniqueItems": true,
+                    "example": "0x28db261e903e3ff82f883da7e4562896ad9a14d4cc35e8695b9498b565c8527d"
+                }
+            }
+        },
+        "Mnemonic_seedConfirm": {
+            "required": [
+                "mnemonic_word"
+            ],
+            "properties": {
+                "mnemonic_word": {
+                    "type": "string",
+                    "uniqueItems": true,
+                    "example": "poet level bita tall measure marriage flush flame landa wet damage feature"
+                }
+            }
+        },
+        "ImportPrivateKeyConfirm": {
+            "required": [
+                "private_key"
+            ],
+            "properties": {
+                "private_key": {
+                    "type": "string",
+                    "uniqueItems": true,
+                    "example": "0x28db261e903e3ff82f883da7e4562896ad9a14d4cc35e8695b9498b565c8527d"
+                }
+            }
+        },
+        "TransferBalance": {
+            "required": [
+                "wallet_add",
+                "gas_price",
+                "dest_add",
+                "amount",
+                "currency",
+                "private_key"
+            ],
+            "properties": {
+                "wallet_add": {
+                    "type": "string",
+                    "uniqueItems": true,
+                    "example": "0x0Eab893c9E2553f05fc495c7C8e049E1D659aC20"
+                },
+                "gas_price": {
+                    "type": "string",
+                    "uniqueItems": true,
+                    "example": "0.00084"
+                },
+                "dest_add": {
+                    "type": "string",
+                    "uniqueItems": true,
+                    "example": "0xC79b9899162B9CFEB7749dA3b340bAC01430bDc4"
+                },
+                "amount": {
+                    "type": "string",
+                    "uniqueItems": true,
+                    "example": "0.01"
+                },
+                "currency": {
+                    "type": "string",
+                    "uniqueItems": true,
+                    "example": "eth"
+                },
+                "private_key": {
+                    "type": "string",
+                    "uniqueItems": true,
+                    "example": "602be38c63a7a30f15e77a2048b80628:bdccaa52853a4cf21d6b9d01b081cc5f45820e2e1e8b87e4fb5dae85059d47ba6bd3c478436dbb6881590bd4b841b1c1e08af56421228ead303d80d60546011fcec91835a7cc4032970aad983726c2c5"
+                }
+            }
+        },
+        "TransferERC20": {
+            "required": [
+                "private_key", "amount", "dest_address", "token_name"
+            ],
+            "properties": {
+                "dest_address": {
+                    "type": "string",
+                    "uniqueItems": true,
+                    "example": "0x0Eab893c9E2553f05fc495c7C8e049E1D659aC20"
+                },
+                "amount": {
+                    "type": "string",
+                    "uniqueItems": true,
+                    "example": "1"
+                },
+                "token_name": {
+                    "type": "string",
+                    "uniqueItems": true,
+                    "example": "Elementeum"
+                },
+                "private_key": {
+                    "type": "string",
+                    "uniqueItems": true,
+                    "example": "602be38c63a7a30f15e77a2048b80628:bdccaa52853a4cf21d6b9d01b081cc5f45820e2e1e8b87e4fb5dae85059d47ba6bd3c478436dbb6881590bd4b841b1c1e08af56421228ead303d80d60546011fcec91835a7cc4032970aad983726c2c5"
+                }
+            }
+        },
+        "TransferERC721": {
+            "required": [
+                "private_key", "amount", "dest_address", "token_name"
+            ],
+            "properties": {
+                "dest_address": {
+                    "type": "string",
+                    "uniqueItems": true,
+                    "example": "0x0Eab893c9E2553f05fc495c7C8e049E1D659aC20"
+                },
+                "amount": {
+                    "type": "string",
+                    "uniqueItems": true,
+                    "example": "1"
+                },
+                "token_name": {
+                    "type": "string",
+                    "uniqueItems": true,
+                    "example": "Elementeum"
+                },
+                "private_key": {
+                    "type": "string",
+                    "uniqueItems": true,
+                    "example": "602be38c63a7a30f15e77a2048b80628:bdccaa52853a4cf21d6b9d01b081cc5f45820e2e1e8b87e4fb5dae85059d47ba6bd3c478436dbb6881590bd4b841b1c1e08af56421228ead303d80d60546011fcec91835a7cc4032970aad983726c2c5"
+                }
+            }
+        },
+        "Response": {
+            "properties": {
+                "status": {
+                    "type": "string",
+                    "uniqueItems": true,
+                    "example": "0 OR 1"
+                },
+                "message": {
+                    "type": "string",
+                    "uniqueItems": true,
+                    "example": "Print error or success message"
+                },
+                "data": {
+                    "type": "string",
+                    "uniqueItems": true,
+                    "example": "Response data if require"
+                }
+            }
+        }
+    }
+}
