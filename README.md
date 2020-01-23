@@ -33,12 +33,15 @@ These dependencies will be installed by default using *npm i* command by navigat
 
 Deployment instructions:
 
-    • Upload code on the server and run command npm i for install all node module and run below command for run application.
-    • npm run start - For running application in development mode. You can refer to.ENV to setup a new environment as per your requirement.
-    • pm2 start npm -- run start For run service on PM2 production.
+    • Upload code on the server and run command npm i for install all node module and then run below command to run application.
+    • npm run start - For running application in development mode. You can refer .ENV file to setup a new environment as per your requirement.
+    • pm2 start npm -- run start To run service on PM2 production.
 
 API Path:
+
 Once you have successfully installed node modules and deployed the app on server, you can navigate to below path to view all API documentation using Swagger. 
+
+http://localhost:5000/api-calls/
 
 Please note: 
 
@@ -47,8 +50,6 @@ Please note:
 - When call transfer token API, then get the token address and ABI from the collection and use it.
 - Make sure you use Infura API key and make necessary changes in the code. 
 - Use your JWT token Key in the development.env file. 
-
-    • http://localhost:5000/api-calls/
 
 Functionality
 
